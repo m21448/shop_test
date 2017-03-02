@@ -1,0 +1,36 @@
+<div class="container">
+
+  <table class="table table-bordered">
+    <thead>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Sku</td>
+      <td>{{good.sku}}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{{good.name}}</td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td>{{good.price / 100}}</td>
+    </tr>
+    <tr>
+      <td>Created At</td>
+      <td>{{good.createdAt | date: 'dd-MM-yyyy HH:mm'}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="text-center">
+          <button (click)="goBack()" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i> BACK</button>
+          <button (click)="deleteGood(good)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> REMOVE</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

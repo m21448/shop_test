@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="panel">
+    <div class="panel-body">
+      <button (click)="editGood(0)" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> Add good</button>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <th>Sku</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Created At</th>
+    <th>Actions</th>
+    </thead>
+    <tbody>
+    <tr *ngFor='let item of goodsService.getGoods()'>
+      <td>{{item.sku}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.price / 100}}</td>
+      <td>{{item.createdAt | date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td>
+        <div class="btn-group">
+          <button class="btn btn-default" title="View good" (click)="viewGood(item.sku)"><span class="glyphicon glyphicon-eye-open"></span></button>
+          <button class="btn btn-default" title="Edit good" (click)="editGood(item.sku)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button class="btn btn-default" (click)="deleteGood(item)" title="Delete good"><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div> <!-- /container -->

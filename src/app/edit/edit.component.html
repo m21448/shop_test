@@ -1,0 +1,28 @@
+<div class="container">
+  <form [formGroup]="goodForm"  (ngSubmit)="onSubmit()">
+    <div class="form-group error">
+      <label class="control-label" for="sku">Sku</label>
+      <input [disabled]="isEdit" id="sku" class="form-control" formControlName="sku" [(ngModel)] = "good.sku" />
+      <span class="help-inline" style="color: red;">{{ formErrors.sku }}</span>
+    </div>
+
+    <div class="form-group error">
+      <label class="control-label" for="name">Name</label>
+      <input  id="name" class="form-control" formControlName="name"  [(ngModel)] = "good.name" />
+      <span class="help-inline" style="color: red;">{{ formErrors.name }}</span>
+    </div>
+
+    <div class="form-group error">
+      <label class="control-label" for="price">Price</label>
+      <input id="price" class="form-control" formControlName="price" />
+      <span class="help-inline" style="color: red;">{{ formErrors.price }}</span>
+    </div>
+
+    <button type="submit" class="btn btn-default"
+            [disabled]="goodForm.status == 'INVALID'" >
+      <i class="glyphicon glyphicon-plus" *ngIf="!isEdit"></i>
+      <i class="glyphicon glyphicon-pencil" *ngIf="isEdit"></i>
+       {{isEdit ? 'SAVE' : 'ADD'}}</button>
+    <button class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> BACK</button>
+  </form>
+</div>
