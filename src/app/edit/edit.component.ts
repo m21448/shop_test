@@ -31,27 +31,29 @@ export class EditComponent implements OnInit {
 
     this.route.params.subscribe(
         (params: Params) => {
+
           this.good = this.goodsService.resolveGood(params['id']);
           this.isEdit = this.good.sku ? true : false;
 
           this.goodForm = this.fb.group({
             sku: [{value : this.good.sku, disabled : this.isEdit}, Validators.required],
             name: [this.good.name, Validators.required],
-            price: [this.resolvePrice(this.good.price), Validators.required],
+
+            price: [this.resolvePrice(this.good.price), [Validators.required, Validators.pattern(/^\-?\d+((\.|\,)\d+)?$/)]],
           });
 
           this.goodForm.valueChanges
               .subscribe(data => this.onValueChanged(data));
 
-          this.onValueChanged();//forReset
+          this.onValueChanged(); // forReset
+
         }
     );
   }
 
   private resolvePrice(num : number) : number {
     if (num && num > 0) {
-      num = num / 100;
-      return Math.round(num * 100) / 100;
+      return num / 100;
     } else {
       return 0;
     }
@@ -59,8 +61,9 @@ export class EditComponent implements OnInit {
 
   onSubmit() : void {
 
-    this.good.price = this.goodForm.value["price"] * 100;
-    
+    this.good.price = Math.round(this.goodForm.value["price"] * 100);
+    console.log(this.goodForm.get("price").setValue(this.good.price / 100));
+
     if (!this.isEdit) {
       this.goodsService.addGood(this.good);
       this.isEdit = true;
@@ -103,7 +106,8 @@ export class EditComponent implements OnInit {
       'required': 'Name is required.'
     },
     'price': {
-      'required': 'Price is required.'
+      'required': 'Price is required.',
+      'pattern': 'Price must be the number.'
     }
   };
 
