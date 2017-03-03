@@ -28,7 +28,7 @@ import { environment } from 'environments/environment';
         HttpModule,
         RouterModule.forRoot([
             {
-                path: '',
+                path: environment.baseUrl+ '',
                 component: AppComponent
             },
             {
