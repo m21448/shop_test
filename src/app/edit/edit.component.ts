@@ -38,7 +38,6 @@ export class EditComponent implements OnInit {
           this.goodForm = this.fb.group({
             sku: [{value : this.good.sku, disabled : this.isEdit}, Validators.required],
             name: [this.good.name, Validators.required],
-
             price: [this.resolvePrice(this.good.price), [Validators.required, Validators.pattern(/^\-?\d+((\.|\,)\d+)?$/)]],
           });
 
@@ -46,7 +45,6 @@ export class EditComponent implements OnInit {
               .subscribe(data => this.onValueChanged(data));
 
           this.onValueChanged(); // forReset
-
         }
     );
   }
