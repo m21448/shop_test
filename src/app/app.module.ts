@@ -11,6 +11,7 @@ import { ListComponent } from './list/list.component';
 import {GoodsService} from "./goods.service";
 import { EditComponent } from './edit/edit.component';
 import { ViewComponent } from './view/view.component';
+import { environment } from 'environments/environment';
 
 @NgModule({
     declarations: [
@@ -31,19 +32,19 @@ import { ViewComponent } from './view/view.component';
                 component: AppComponent
             },
             {
-                path: 'login',
+                path: environment.baseUrl + 'login',
                 component: LoginComponent
             },
             {
-                path: 'products',
+                path: environment.baseUrl + 'products',
                 component: ListComponent
             },
             {
-                path: 'products/:id/edit',
+                path: environment.baseUrl + 'products/:id/edit',
                 component: EditComponent
             },
             {
-                path: 'products/:id',
+                path: environment.baseUrl + 'products/:id',
                 component: ViewComponent
             }
         ])

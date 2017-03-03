@@ -41,4 +41,6 @@ export class GoodsService {
         }
     }
 
+    public isFirstRun : boolean = true;
+
 }

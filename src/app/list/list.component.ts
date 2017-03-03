@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GoodsService} from "../goods.service";
 import {Good} from "../good";
 import {Router} from "@angular/router";
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-list',
@@ -19,11 +20,11 @@ export class ListComponent implements OnInit {
   }
 
   editGood(id) : void {
-    this.router.navigateByUrl("products/"+id+"/edit");
+    this.router.navigateByUrl(environment.baseUrl + "products/"+id+"/edit");
   }
 
   viewGood(id) : void {
-    this.router.navigateByUrl("products/"+id);
+    this.router.navigateByUrl(environment.baseUrl + "products/"+id);
   }
 
   deleteGood(good) : void {
@@ -32,10 +33,10 @@ export class ListComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
 
-    if (this.goodsService.getGoods().length == 0) {
+    if (this.goodsService.getGoods().length == 0 && this.goodsService.isFirstRun) {
+      this.goodsService.isFirstRun = false;
       let good = new Good();
       good.sku = 1;
       good.name = "SampleNameOfGood";

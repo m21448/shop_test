@@ -3,6 +3,7 @@ import {Good} from "../good";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {GoodsService} from "../goods.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'environments/environment';
 
 
 
@@ -69,7 +70,7 @@ export class EditComponent implements OnInit {
   }
 
   goBack() : void {
-    this.router.navigateByUrl("products");
+    this.router.navigateByUrl(environment.baseUrl + "products");
   }
 
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {GoodsService} from "../goods.service";
 import {Good} from "../good";
+import { environment } from 'environments/environment';
+
 
 @Component({
   selector: 'app-view',
@@ -26,12 +28,12 @@ export class ViewComponent implements OnInit {
   deleteGood(good) : void {
     if (confirm("Вы действительно хотите удалить товар ?")) {
       this.goodsService.deleteGood(good);
-      this.router.navigateByUrl("products");
+      this.router.navigateByUrl(environment.baseUrl + "products");
     }
   }
 
   goBack() : void {
-    this.router.navigateByUrl("products");
+    this.router.navigateByUrl(environment.baseUrl + "products");
   }
 
 }
